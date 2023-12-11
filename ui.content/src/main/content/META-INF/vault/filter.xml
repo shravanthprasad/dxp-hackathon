@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/dxp-hackathon" mode="merge"/>
+    <filter root="/content/dxp-hackathon" mode="merge"/>
+    <filter root="/content/dam/dxp-hackathon" mode="merge">
+        <exclude pattern="/content/dam/dxp-hackathon(/.*)?"/>
+        <include pattern="/content/dam/dxp-hackathon/jcr:content(/.*)?"/>
+    </filter>
+    <filter root="/content/dam/dxp-hackathon/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/dxp-hackathon" mode="merge"/>
+</workspaceFilter>

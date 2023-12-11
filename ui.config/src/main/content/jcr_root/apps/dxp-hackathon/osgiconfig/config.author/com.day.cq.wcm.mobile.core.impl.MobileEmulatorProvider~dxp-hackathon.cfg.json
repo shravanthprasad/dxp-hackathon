@@ -1,0 +1,6 @@
+{
+  "mobile.resourceTypes": [
+    "dxp-hackathon/components/page"
+  ],
+  "README": "Indicate which page resource types should display the mobile emulators."
+}

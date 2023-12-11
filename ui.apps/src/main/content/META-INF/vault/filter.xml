@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/dxp-hackathon/clientlibs"/>
+    <filter root="/apps/dxp-hackathon/components"/>
+    <filter root="/apps/dxp-hackathon/i18n"/>
+</workspaceFilter>

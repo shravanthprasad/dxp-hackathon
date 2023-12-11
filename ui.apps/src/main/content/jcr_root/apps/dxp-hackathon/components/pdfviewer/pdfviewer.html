@@ -1,0 +1,23 @@
+<!-- Button to trigger the modal -->
+<button type="button" class="btn btn-primary js-viewer-modal" data-toggle="modal" data-target="#myModal">
+  Want a Summary? Ask our AI Bot!
+</button>
+<div class="cmp-pdfviewer" 
+     data-sly-use.pdfViewer="com.adobe.cq.wcm.core.components.models.PdfViewer"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     id="${pdfViewer.id}"
+     data-cmp-is="pdfviewer"
+     data-cmp-client-id="${pdfViewer.clientId}"
+     data-cmp-report-suite-id="${pdfViewer.reportSuiteId}"
+     data-cmp-document-path="${pdfViewer.documentPath}"
+     data-cmp-document-file-name="${pdfViewer.documentFileName}"
+     data-cmp-viewer-config-json="${pdfViewer.viewerConfigJson}"
+     data-sly-set.clientIdError="${'Please setup Context Aware Configuration (com.adobe.cq.wcm.core.components.internal.services.pdfviewer.PdfViewerCaConfig) in /conf and link it using sling:configRef on any current/parent node.' @ i18n}"
+     data-sly-set.documentPathError="${'Please select a document to display.' @ i18n}"
+     data-sly-set.error="${!pdfViewer.clientId ? clientIdError : (!pdfViewer.documentPath ? documentPathError : false)}"
+     data-sly-test="${!error}"
+     data-cmp-data-layer="${pdfViewer.data.json}">
+     <div id="${pdfViewer.id}-content"
+          class="cmp-pdfviewer__content ${pdfViewer.containerClass @ context='html'}"></div>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=error, classAppend='cmp-pdfviewer', emptyTextAppend=error}"></sly>

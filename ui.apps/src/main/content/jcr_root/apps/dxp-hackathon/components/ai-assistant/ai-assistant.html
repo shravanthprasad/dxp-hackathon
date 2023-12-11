@@ -1,0 +1,33 @@
+<!-- Button to trigger the modal -->
+<button type="button" class="btn btn-primary js-viewer-modal" data-toggle="modal" data-target="#myModal">
+  AI Search!
+</button>
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h6 class="modal-title text-body">Chat with our AI Assistant!</h6>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body assistant-model-content text-body">
+        <input type="textarea" class="js-chatbot-message" placeholder="Type your message here..."></input>
+        <button type="submit" class="btn btn-primary js-chatbot-submit">Seach</button>
+        <div class="spinner-border d-none" id="spinner" role="status">
+  			<span class="sr-only">Loading...</span>
+		</div>
+        <div class="js-chatbot-content text-body"></div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary js-chatbot-clear" data-dismiss="modal">Clear</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
