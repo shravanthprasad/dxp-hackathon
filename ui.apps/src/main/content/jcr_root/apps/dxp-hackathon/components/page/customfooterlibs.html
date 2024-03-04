@@ -13,32 +13,6 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 */-->
-<!-- The Modal -->
-<div class="modal" id="myModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h6 class="modal-title">Want content summarized by our AI Bot!</h6>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-
-      <!-- Modal Body -->
-      <div class="modal-body">
-        <input type="textarea" class="js-chatbot-message" placeholder="Message"></input>
-        <input type="submit" class="js-chatbot-submit"></input>
-        <div class="js-chatbot-content">Response: </div>
-      </div>
-
-      <!-- Modal Footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
 <sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html">
     <sly data-sly-call="${clientlib.js @ categories='dxp-hackathon.base', async=true}"/>
 </sly>
