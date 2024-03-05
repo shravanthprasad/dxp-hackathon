@@ -13,17 +13,18 @@ async function chat(prompt) {
     const context = document.getElementById('js-chatbot-output')?.innerHTML;
     console.log('context ', context);
     const completion = await openai.chat.completions.create({
-        messages: [{"role": "system", "content": "Answer user query from related content."},
-            {"role": "user", "content": context},
-            {"role": "assistant", "content": "Thank you for providing me context. Pls ask me any query."},
-            {"role": "user", "content": prompt}],
-        model: "gpt-3.5-turbo",
+        messages: [{'role': 'system', 'content': 'Answer user query only from provided context. Your answer should be HTML formatted in the best way. Else Reply Sorry, I don\'t have the information'},
+            {'role': 'user', 'content': context},
+            {'role': 'assistant', 'content': 'Thank you for providing me context. Pls ask me any query.'},
+            {'role': 'user', 'content': prompt}],
+        model: 'gpt-3.5-turbo',
     });
     console.log(completion);
     console.log(completion?.choices[0]);
     const data = completion?.choices[0]?.message;
     let messageContent = document.querySelector('.js-chatbot-content');
-    messageContent.innerHTML += messageContent.innerHTML + '<b class="text-primary">' + data.role + '</b><br/><p class="text-body">' + data.content + '</p>';
+    messageContent.innerHTML += '<b class="text-primary">User</b><br/><p class="text-body">' + prompt + '</p>';
+    messageContent.innerHTML += '<b class="text-primary">Assistant</b><br/><p class="text-body">' + data.content + '</p>';
     console.log('output', data);
 
 }
