@@ -26,8 +26,8 @@ async function chat(prompt) {
     console.log(completion?.choices[0]);
     const data = completion?.choices[0]?.message;
     let messageContent = document.querySelector('.js-chatbot-content');
-    messageContent.innerHTML += '<b class="text-primary">User</b><br/><p class="text-body">' + prompt + '</p>';
-    messageContent.innerHTML += '<b class="text-primary">Assistant</b><br/><p class="text-body">' + data.content + '</p>';
+    messageContent.innerHTML += '<b class="text-primary">User</b><p class="text-body">' + prompt + '</p>';
+    messageContent.innerHTML += '<b class="text-primary">Assistant</b><p class="text-body">' + data.content + '</p>';
     console.log('output', data);
     document.getElementById('spinner').classList.add('d-none');
     document.querySelector('.js-chatbot-message').value = '';
