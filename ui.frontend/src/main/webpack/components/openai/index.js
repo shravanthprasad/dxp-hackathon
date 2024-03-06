@@ -13,7 +13,10 @@ async function chat(prompt) {
     const context = document.getElementById('js-chatbot-output')?.innerHTML;
     console.log('context ', context);
     const completion = await openai.chat.completions.create({
-        messages: [{'role': 'system', 'content': 'Answer user query only from provided context. Your answer should be HTML formatted in the best way. Else Reply Sorry, I don\'t have the information'},
+        messages: [{
+            'role': 'system',
+            'content': 'Answer user query only from provided context. Your answer should be HTML formatted in the best way. Else Reply Sorry, I don\'t have the information'
+        },
             {'role': 'user', 'content': context},
             {'role': 'assistant', 'content': 'Thank you for providing me context. Pls ask me any query.'},
             {'role': 'user', 'content': prompt}],
@@ -26,6 +29,8 @@ async function chat(prompt) {
     messageContent.innerHTML += '<b class="text-primary">User</b><br/><p class="text-body">' + prompt + '</p>';
     messageContent.innerHTML += '<b class="text-primary">Assistant</b><br/><p class="text-body">' + data.content + '</p>';
     console.log('output', data);
+    document.getElementById('spinner').classList.add('d-none');
+    document.querySelector('.js-chatbot-message').value = '';
 
 }
 
@@ -43,6 +48,7 @@ function initOpenAi() {
     submitMessage.addEventListener('click', (event) => {
         console.log('adding listener');
         event.preventDefault();
+        document.getElementById('spinner').classList.remove('d-none');
         chat(messageInput.value).then();
     });
 
