@@ -15,7 +15,7 @@ async function chat(prompt) {
     const completion = await openai.chat.completions.create({
         messages: [{
             'role': 'system',
-            'content': 'Answer user query only from provided context. Your answer should be HTML formatted in the best way. Else Reply Sorry, I don\'t have the information'
+            'content': 'Answer user query only from provided context with a summary of the question. Your answer should be HTML formatted with consistent font size and styles. Answer only from the context provided'
         },
             {'role': 'user', 'content': context},
             {'role': 'assistant', 'content': 'Thank you for providing me context. Pls ask me any query.'},
