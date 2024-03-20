@@ -12,10 +12,14 @@ const openai = new OpenAI({
 async function chat(prompt) {
     const context = document.getElementById('js-chatbot-output')?.innerHTML;
     console.log('context ', context);
+    if(!context){
+        console.log('No context provided');
+        return;
+    }
     const completion = await openai.chat.completions.create({
         messages: [{
             'role': 'system',
-            'content': 'Answer user query only from provided context with a summary of the question. Your answer should be HTML formatted with consistent font size and styles. Answer only from the context provided'
+            'content': 'Answer user query only from provided context. Your answer should be HTML formatted with consistent font size and styles.Use Only H5 for heading tags.'
         },
             {'role': 'user', 'content': context},
             {'role': 'assistant', 'content': 'Thank you for providing me context. Pls ask me any query.'},
@@ -50,6 +54,7 @@ function initOpenAi() {
         event.preventDefault();
         document.getElementById('spinner').classList.remove('d-none');
         chat(messageInput.value).then();
+        console.log('Ready');
     });
 
 }

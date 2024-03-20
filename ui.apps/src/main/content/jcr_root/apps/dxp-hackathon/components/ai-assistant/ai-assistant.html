@@ -1,5 +1,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.js @ categories='dxp-hackathon.site', async=true}"/>
+</sly>
 <style>
     .modal-dialog {
         cursor: move;
@@ -26,11 +29,6 @@
 
             <!-- Modal Body -->
             <div class="modal-body assistant-model-content text-body">
-                <input type="textarea" class="js-chatbot-message" placeholder="Type your message here..."></input>
-                <button type="submit" class="btn btn-primary js-chatbot-submit">Seach</button>
-                <div class="spinner-border d-none" id="spinner" role="status">
-                    <span class="sr-only">Loading...</span>
-                </div>
                 <div class="js-chatbot-content text-body">
                     <b class="text-primary">Assistant</b>
                     <p class="text-body">Hi <span class="wave">👋🏾</span> I am Lokie!<br>
@@ -43,6 +41,12 @@
                         Feel free to ask any question or provide text you'd like summarized, and I'll do my best to help
                         you out!
                     </p>
+                </div>
+                <input type="textarea" class="js-chatbot-message" placeholder="Type your message here..." style="width:300px;height:30px"></input>
+                <button type="submit" class="btn btn-primary js-chatbot-submit">Seach</button>
+                <div class="spinner-border d-none" id="spinner" role="status">
+                    Loading...
+                    <span class="sr-only">Loading...</span>
                 </div>
             </div>
 
@@ -64,7 +68,8 @@
                 const pdf = await loadingTask.promise;
                 const numPages = pdf.numPages;
                 const outputDiv = document.getElementById('js-chatbot-output');
-                outputDiv.innerHTML = ''; // Clear previous content
+                outputDiv.innerHTML = '';
+                console.log('output div cleared');// Clear previous content
 
                 // Iterate through each page
                 for (let pageNumber = 1; pageNumber <= numPages; pageNumber++) {
@@ -78,6 +83,7 @@
                     const pageDiv = document.createElement('div');
                     pageDiv.innerHTML = '<h3>Page ' + pageNumber + '</h3><p>' + pageText + '</p>';
                     outputDiv.appendChild(pageDiv);
+                    console.log('Loaded output div',pageDiv);
                 }
             } catch (error) {
                 console.error('Error loading PDF:', error);
