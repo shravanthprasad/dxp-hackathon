@@ -25,8 +25,10 @@ import java.util.List;
 @Component(immediate = true)
 public class CustomPdfAiWorkflowProcess implements WorkflowProcess {
 
+    public static final String SK_VU_VL_8_ZCU_ZAA_IUUNT_EZ_79_T_3_BLBK_FJMZ_4_N_PWW_6_E_5_X_OB_EVN_534_Q = "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";
     @Reference
     OpenAIApiService openAIApiService;
+
 
     @Override
     public void execute(WorkItem workItem, WorkflowSession workflowSession, MetaDataMap metaDataMap) throws WorkflowException {
@@ -54,7 +56,7 @@ public class CustomPdfAiWorkflowProcess implements WorkflowProcess {
             JsonObject jsonObject = new Gson().fromJson(openAiApiResponse, JsonObject.class);
             String newFileId = jsonObject.get("id").getAsString();
             // List file IDs
-            String listFilesResponse = openAIApiService.makeApiRequest("https://api.openai.com/v1/assistants/asst_SYgA7NtuVgRDMM0vs2QUqItS/files", "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");
+            String listFilesResponse = openAIApiService.makeApiRequest("https://api.openai.com/v1/assistants/asst_SYgA7NtuVgRDMM0vs2QUqItS/files", SK_VU_VL_8_ZCU_ZAA_IUUNT_EZ_79_T_3_BLBK_FJMZ_4_N_PWW_6_E_5_X_OB_EVN_534_Q);
             JsonObject listFilesResponseJson = new Gson().fromJson(listFilesResponse, JsonObject.class);
             JsonArray jsonArray = listFilesResponseJson.get("data").getAsJsonArray();
             List<String> fileIds = new ArrayList<>();
@@ -63,7 +65,7 @@ public class CustomPdfAiWorkflowProcess implements WorkflowProcess {
             for (int i = 0; i < jsonArray.size(); i++) {
                 fileIds.add(jsonArray.get(i).getAsJsonObject().get("id").getAsString());
             }
-            openAIApiService.configureAssistant("https://api.openai.com/v1/assistants/asst_SYgA7NtuVgRDMM0vs2QUqItS", "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", "You are an AI bot and you use your pdf files only to respond to queries.Don’t give information not mentioned in the CONTEXT INFORMATION.", fileIds);
+            openAIApiService.configureAssistant("https://api.openai.com/v1/assistants/asst_SYgA7NtuVgRDMM0vs2QUqItS", SK_VU_VL_8_ZCU_ZAA_IUUNT_EZ_79_T_3_BLBK_FJMZ_4_N_PWW_6_E_5_X_OB_EVN_534_Q, "You are an AI bot and you use your pdf files only to respond to queries.Don’t give information not mentioned in the CONTEXT INFORMATION.", fileIds);
 
             // Perform any additional logic based on the OpenAI API response
 
@@ -98,7 +100,7 @@ public class CustomPdfAiWorkflowProcess implements WorkflowProcess {
             pdfInputStream.close();
         }
 
-        return openAIApiService.uploadFile("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", tempFile, "assistants");
+        return openAIApiService.uploadFile(SK_VU_VL_8_ZCU_ZAA_IUUNT_EZ_79_T_3_BLBK_FJMZ_4_N_PWW_6_E_5_X_OB_EVN_534_Q, tempFile, "assistants");
     }
 }
 
